@@ -1,17 +1,17 @@
 import { test as setup, expect } from '@playwright/test';
 import { time } from 'console';
 import * as OTPAuth from 'otpauth';
-import 'dotenv/config' ; 
+// import dotenv from "dotenv";
 import path from 'path';
 
 const authFile = path.join(__dirname,'../playwright/.auth/user.json');
 
 setup('github auth setup with MFA', async ({ page }) => {
-  // dotenv.config() ;
+  // dotenv.config() ;?
   // // Guardrails: fail fast if env vars are missing
-  // if (!process.env.GITHUB_USER ) {
-  //   throw new Error('Required environment vGITHUB_USER ariables are missing');
-  // }
+  if (!process.env.GITHUB_USER ) {
+    throw new Error('Required environment vGITHUB_USER ariables are missing');
+  }
   //   if (!process.env.GITHUB_PASS ) {
   //   throw new Error('Required environment vGITHUB_PASS ariables are missing');
   // }
@@ -23,6 +23,8 @@ setup('github auth setup with MFA', async ({ page }) => {
   //     !process.env.GITHUB_MFA_SECRET) {
   //   throw new Error('Required environment variables are missing');
   // }
+  // let mfaSecret = process.env.GITHUB_MFA_SECRET ;
+  let mfaSecret = "SG5GANAMG7DT2G4X" ;
 // otpauth://totp/GitHub:danielcdoran?secret=EDL46UJXLQZHOT4S&issuer=GitHub
   // Step 1: Go to GitHub login
   await page.goto('https://github.com/');

@@ -1,4 +1,9 @@
 import { defineConfig } from '@playwright/test';
+import dotenv from 'dotenv';
+import path from 'path';
+
+// Read from ".env" file.
+dotenv.config({ path: path.resolve(__dirname, '.env') });   
 
 export default defineConfig({
   testDir: './tests',
@@ -6,6 +11,7 @@ export default defineConfig({
   use: {
     baseURL: 'https://github.com',
     trace: 'on-first-retry',
+    // env_github_User: process.env.GITHUB_USER === 'ff' ? 'gg' : 'mm',
   },
 
   projects: [
