@@ -11,7 +11,7 @@ export default defineConfig({
   use: {
     baseURL: 'https://github.com',
     trace: 'on-first-retry',
-    // env_github_User: process.env.GITHUB_USER === 'ff' ? 'gg' : 'mm',
+    // env_github_User: process.env.GITHUB_USER ,
   },
 
   projects: [
