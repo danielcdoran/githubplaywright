@@ -28,22 +28,17 @@ setup('github auth setup with MFA', async ({ page }) => {
   //     let password: string  = process.env.GITHUB_PASS as string  ;
   // let mfaSecret: string = process.env.GITHUB_MFA_SECRET as string  ;
 
-  let username: string = "danielcdoran";
-  // let password: string = "Theridgeway2073";
-  // let mfaSecret: string = "SG5GANAMG7DT2G4X";
+
   let mfaSecret: string = process.env.GITHUB_MFA_SECRET as string; //"SG5GANAMG7DT2G4X";
-  let password: string = 'Theridgeway2073'; // note using different parenthesis
-  // let mfaSecret = "SG5GANAMG7DT2G4X" ;
-  // otpauth://totp/GitHub:danielcdoran?secret=EDL46UJXLQZHOT4S&issuer=GitHub
-  // Step 1: Go to GitHub login
+   let password: string = process.env.GITHUB_PASSWORD as string;
+      let username: string = process.env.GITHUB_USER as string;
+
   await page.goto('https://github.com/');
   await page.getByRole('link', { name: 'Sign in' }).click();
 
   // Step 2: Username + Password
-  // await page.getByRole('textbox', { name: 'Username or email address' }).click();
+
   await page.getByLabel('Username or email address').fill(username);
-  // await page.getByText('Password', { exact: true }).click();
-  // await page.getByRole('textbox', { name: 'Password' }).click();
   await page.getByLabel('Password').fill(password);
 
   // Step 3: Generate OTP using shared secret
@@ -59,8 +54,6 @@ setup('github auth setup with MFA', async ({ page }) => {
   // console.info(code)
 
   // Step 4: Enter OTP and verify
-  // await page.getByRole('textbox', { name: 'Enter the verification code' }).click();
-  // await page.getByRole('textbox', { name: 'Enter the verification code' }).fill(code);
   await page.getByRole('button', { name: 'Sign in', exact: true }).click();
   await page.getByLabel('Enter the verification code').fill(code);
   // await page.getByRole('button', { name: 'Verify' }).click();
