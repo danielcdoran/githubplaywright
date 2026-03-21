@@ -19,6 +19,8 @@ test('user is already logged in', async ({ page }) => {
 
 test('Create commit from README.md', async ({ page }) => {
   // Go directly to GitHub homepage
+  const date = new Date();
+const formattedDate = date.toLocaleDateString()
   await page.goto('https://github.com');
 
   // GitHub shows avatar button only when logged in
@@ -29,10 +31,10 @@ test('Create commit from README.md', async ({ page }) => {
   await page.getByRole('link', { name: 'README', exact: true }).click();
   await page.getByRole('link', { name: 'README.md, (File)' }).click();
   await page.getByTestId('edit-button').click();
-  await page.getByRole('textbox', { name: 'Editing README.md file' }).fill('add moreaddd here');
+  await page.getByRole('textbox', { name: 'Editing README.md file' }).fill('Add current time ' + formattedDate + ' in file');
   await page.getByRole('button', { name: 'Commit changes...' }).click();
   await page.getByRole('textbox', { name: 'Add an optional extended' }).click();
-  await page.getByRole('textbox', { name: 'Add an optional extended' }).fill('text added');
+  await page.getByRole('textbox', { name: 'Add an optional extended' }).fill('Commit message - current time ' + formattedDate + ' committed');
   await page.getByRole('button', { name: 'Commit changes', exact: true }).click();
 });
 
