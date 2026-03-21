@@ -20,7 +20,7 @@ test('user is already logged in', async ({ page }) => {
 test('Create commit from README.md', async ({ page }) => {
   // Go directly to GitHub homepage
   const date = new Date();
-const formattedDate = date.toLocaleDateString()
+const formattedDate = date.toLocaleString()
   await page.goto('https://github.com');
 
   // GitHub shows avatar button only when logged in
